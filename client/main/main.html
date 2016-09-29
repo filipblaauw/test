@@ -1,0 +1,27 @@
+<template name="masterLayout">
+  <div class="ui fixed inverted menu">
+    <div class="ui container">
+      <a href="/" class="header item">
+        MyThings
+      </a>
+      {{#if currentUser}}
+        <a href="{{ pathFor 'add' }}" class="item"><i class="add square icon"></i> Legg til</a>
+        <div class="ui right dropdown item">
+          <i class="user icon"></i> {{ username }}
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <a href="{{ pathFor 'changePwd' }}" class="item"><i class="setting icon"></i> Endre passord</a>
+            <a href="{{ pathFor 'signOut' }}" class="item"><i class="sign out icon"></i> Logg ut</a>
+          </div>
+        </div>
+      {{else}}
+        <a href="{{ pathFor 'signin' }}" class="item"><i class="sign out icon"></i> Logg inn</a>
+        <a href="{{ pathFor 'signup' }}" class="item"><i class="add user icon"></i>Registrer</a>
+      {{/if}}
+    </div>
+  </div>
+  <div class="ui main text container">
+    {{> yield}}
+  </div>
+
+</template>

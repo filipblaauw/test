@@ -1,0 +1,52 @@
+<template name="searchBox">
+  <div class="ui fluid icon input">
+    {{> EasySearch.Input index=ThingsIndex attributes=inputAttributes }}
+    <i class="search icon"></i>
+  </div>
+  <br>
+
+
+  <div class="ui very relaxed list">
+    {{#EasySearch.Each index=ThingsIndex }}
+      <div class="item">
+        <i class="large {{kat}} middle aligned icon"></i>
+        <div class="content">
+          <div class="header"><a href="{{pathFor route='ting'}}">{{tittel}}</a></div>
+          <div class="description">
+            I kategori {{kategori}}
+          </div>
+        </div>
+      </div>
+    {{/EasySearch.Each}}
+  </div>
+
+  {{> EasySearch.Pagination index=ThingsIndex customRenderPagination="myPagination"}}
+
+  {{#EasySearch.IfNoResults index=ThingsIndex}}
+    <div>Beklager, ingen resultater</div>
+  {{/EasySearch.IfNoResults}}
+
+  <div class="ui container center aligned">
+
+      <button class="ui tiny labeled icon button" id="sortGjenstand" data-content="Sorter etter gjenstand" data-variation="basic">
+        <i class="sort alphabet ascending icon"></i>
+        Gjenstand
+      </button>
+      <button class="ui tiny labeled icon button" id="sortKategori" data-content="Sorter etter kategori" data-variation="basic">
+        <i class="sort alphabet ascending icon"></i>
+        Kategori
+      </button>
+
+  </div>
+
+</template>
+
+<template name="myPagination">
+  <nav class="text-center">
+    <ul class="pagination">
+      {{#each page}} 
+        <li class="page {{pageClasses this}}"> <a href="#">{{content}}</a> </li>
+       {{/each}}
+    </ul>
+  </nav>
+</template>
